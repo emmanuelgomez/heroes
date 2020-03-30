@@ -4,10 +4,11 @@ function onFormSubmit(e) {
         // If all questions are required, getItemResponses returns responses in form-order
         var itemResponses = formResponse.getItemResponses();
         var postcode = itemResponses[0].getResponse();  // returns a string
+        var radius = itemResponses[1].getResponse();  // returns a string
         const url = `api.postcodes.io/postcodes/${postcode}/nearest`;
         const payload = {
             limit: 10,
-            radius: 1000
+            radius: radius
         }
         var response = UrlFetchApp.fetch(url, {'muteHttpExceptions': true, payload});
         console.log(response);
